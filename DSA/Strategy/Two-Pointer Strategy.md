@@ -36,6 +36,7 @@ Array:  [ 2,  4,  7,  9,  11, 15 ]
 
 Step 1: Left points to 2, Right points to 15.$2 + 15 = 17$.17 is greater than our target (13). Because the array is sorted, 
 we know 15 is too large to pair with anything else to make 13. We move Right inward.
+
 Step 2: Left points to 2, Right points to 11.$2 + 11 = 13$.Match found! We return the indices.If we had used a nested loop, we might have checked every single 
 combination ($2+4$, $2+7$, $2+9$, etc.). With two pointers, we found it instantly because the sorted nature of the array allowed us to s
 afely skip unnecessary checks.
