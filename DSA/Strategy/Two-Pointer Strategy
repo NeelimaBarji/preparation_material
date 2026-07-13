@@ -29,5 +29,21 @@ Let's look at how the Opposite Ends style works visually.
 Problem: Find if there are two numbers in a sorted array that add up to a target of 13.
 
 
+Array:  [ 2,  4,  7,  9,  11, 15 ]
+          ↑                   ↑
+        Left                 Right
+        (idx 0)              (idx 5)
+
+Step 1: Left points to 2, Right points to 15.$2 + 15 = 17$.17 is greater than our target (13). Because the array is sorted, 
+we know 15 is too large to pair with anything else to make 13. We move Right inward.
+Step 2: Left points to 2, Right points to 11.$2 + 11 = 13$.Match found! We return the indices.If we had used a nested loop, we might have checked every single 
+combination ($2+4$, $2+7$, $2+9$, etc.). With two pointers, we found it instantly because the sorted nature of the array allowed us to s
+afely skip unnecessary checks.
+
+The Checklist: When to use it?You should immediately think of the two-pointer approach if your problem has these traits:The data structure 
+is linear (an array, string, or linked list).The array is sorted (or you can sort it without ruining the required output).You are looking 
+for pairs, triplets, or sub-arrays that match a specific criteria.
+
+
 
 
