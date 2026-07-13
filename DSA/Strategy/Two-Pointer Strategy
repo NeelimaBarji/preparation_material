@@ -1,0 +1,33 @@
+The Two-Pointer Strategy is a classic technique used to optimize array or string problems. Instead of using nested loops (which often 
+results in a slow $O(n^2)$ runtime), you maintain two separate index pointers that traverse the data structure simultaneously.
+By moving the pointers based on specific conditions, you can often solve the problem in a single pass—bringing the runtime down to a 
+much faster $O(n)$.
+
+# How It Works: The Two Main Styles
+Depending on the problem, your pointers will usually move in one of two patterns:
+
+## 1. Opposite Ends (Converging)
+You place one pointer at the very beginning (left = 0) and one at the very end (right = array.length - 1). 
+They move toward each other until they meet.
+
+Best for: Sorted arrays, finding pairs, or reversing elements.
+
+Classic Problem: Two Sum when the input array is already sorted. If the sum of the elements at left and right is too small, 
+you increment left to get a larger value. If the sum is too big, you decrement right to get a smaller value.
+
+## 2. Slow & Fast (Sliding Window / Runner)
+Both pointers start at the same side, but they move at different speeds or under different conditions.
+
+Best for: Linked lists (finding cycles or the midpoint) or removing duplicates in-place.
+
+Classic Problem: Detecting a cycle in a linked list. The "fast" pointer moves two steps at a time while the "slow" pointer moves one.
+If there is a loop, the fast pointer will eventually lap the slow pointer and they will meet.
+
+### A Concrete Example: Pair Sum
+Let's look at how the Opposite Ends style works visually.
+
+Problem: Find if there are two numbers in a sorted array that add up to a target of 13.
+
+
+
+
