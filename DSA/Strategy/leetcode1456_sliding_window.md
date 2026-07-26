@@ -124,3 +124,36 @@ For recursion: write the recurrence relation (e.g., T(n) = T(n-1) + O(n)) and so
 
 ## 5. Record yourself or explain to someone/something else
 Say it out loud to a rubber duck, a friend, or even into a voice memo, then listen back. You'll catch hand-wavy spots ("this is roughly O(n) I think") that you wouldn't catch just thinking it internally. This also builds the exact muscle used in a live interview, where you have to produce this analysis under a stranger's gaze in real time — silent understanding doesn't transfer automatically to spoken clarity under pressure.
+
+
+
+# Time Complexity: O(n), where n = s.length()
+
+## Walking through it:
+
+The for loop runs exactly n times — one pass over the string, no nested loops over n.
+Inside the loop, each iteration does:
+s.charAt(i) → O(1)
+vowel.contains(...) → O(5) → effectively O(1) since the list size is fixed at 5, never grows with n
+Math.max(...), increment/decrement → O(1)
+So each iteration does a constant amount of work, and there are n iterations.
+
+Total: O(n) · O(1) = O(n)
+
+The .contains() calls don't change the asymptotic complexity — they're bounded by a constant (5), not by n. They do add a real constant-factor slowdown (which is what caused the 40ms runtime we discussed earlier), but that's a practical performance issue, not a Big-O issue. This is exactly the kind of distinction worth saying explicitly in an interview: "the constant-factor overhead from boxing and linear list scan doesn't change the O(n) bound, but it does affect real-world speed."
+
+## Space Complexity: O(1)
+
+Walking through it:
+
+vowel is a fixed-size list of 5 characters — doesn't grow with input, so it's a constant.
+count, maxcount, i are single primitive variables — constant space.
+No arrays, recursion, or data structures that scale with n or k.
+
+Total: O(1) auxiliary space (not counting the input string itself, which is standard convention).
+
+One line summary you could say out loud in an interview:
+
+"This is a single pass over the string, so O(n) time. Space is O(1) since the vowel set is fixed-size and I'm only tracking a couple of counters — no data structure scales with input size."
+
+That's the level of clarity/brevity interviewers are listening for — algorithmic complexity stated cleanly, constant-factor caveats mentioned only if relevant to the discussion (like it was here, given the runtime question).
