@@ -4,6 +4,32 @@
 
 ---
 
+The core open question driving this entire 3-year research track is a fundamental engineering conflict: How do we safely deploy non-deterministic, error-prone large language models into a high-stakes, zero-tolerance clinical environment like pediatrics?While general AI research focuses on making models smarter or larger, your research tackles the specific, unsolved technical and algorithmic challenges that prevent AI from being safely used on infants and children.Here are the specific, publishable open questions and technical gaps for each project option.
+
+## Project 1: The Core Open Question of Pediatric Dosing Safety
+### The Problem: 
+LLMs process language using token probabilities, meaning they excel at writing human-like sentences but are structurally terrible at precise arithmetic. In pediatrics, missing a decimal point or miscalculating a dose based on a toddler's weight change can be fatal.
+### The Open Research Question: 
+Can an external, deterministic multi-agent programmatic verification layer catch 100% of arithmetic hallucinations in a clinical note before it is written to a patient chart?
+### The Technical Gap: 
+No one has built a standard, open-source pipeline that combines Named Entity Recognition (NER) to pull pediatric vitals with real-time API verifications (like OpenFDA) to act as an automated clinical guardrail.
+
+## Project 2: The Core Open Question of Caregiver Communication Robustness
+### The Problem: 
+Anxious, sleep-deprived parents need medical information translated into highly accessible, plain language. However, LLMs are deeply sensitive to how data is phrased. If a parent phrases a question slightly differently, or if a clinical note uses uncommon phrasing, the AI's translation might omit critical medical risks.
+### The Open Research Question: 
+How mathematically robust are frontier LLMs against adversarial textual perturbations when translating pediatric discharge summaries into low-literacy parent guides?
+### The Technical Gap: 
+There is currently no standardized benchmark or metric to measure "semantic drift" or risk omission when generative models translate complex pediatric care plans into plain language.
+
+## Project 3: The Core Open Question of the "Pediatric Blind Spot"
+### The Problem:
+Medical LLMs are overwhelmingly trained on clinical documentation from adult patients, simply because adults make up the majority of healthcare data.
+### The Open Research Question: 
+Does the structural data imbalance in medical training corpora cause LLMs to exhibit significantly higher epistemic uncertainty (lower token log-probabilities) when diagnosing toddlers versus adults?
+### The Technical Gap: While researchers suspect AI performs worse on children, no one has mathematically quantified this "blind spot" by analyzing the model's internal logits and token-level entropy across pediatric versus adult patient cohorts.
+---
+
 ## Part 1: Systematic Review Protocol (Information to Gather First)
 
 ### 1.1 Research Question & PICO Framework
