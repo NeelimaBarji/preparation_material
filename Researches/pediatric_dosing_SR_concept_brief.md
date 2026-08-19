@@ -241,3 +241,32 @@ Check APCs and waiver policies before committing; the open-access options charge
 | Search goes stale before submission | Re-run before submission; report the update date |
 | Clinical significance calls beyond your expertise | Extract author-reported classifications only; do not impose your own without a clinician co-author |
 | Heterogeneity makes pooling meaningless | Pre-commit in the protocol to narrative synthesis; do not pool across differing tasks and reference standards |
+
+
+
+---
+
+
+## Recommended Simple Titles:
+
+### Dosing Accuracy and Safety of Large Language Models in Pediatrics: A Systematic Review
+
+Twelve words, no jargon, and every word is searchable. It drops "numeric fidelity" (which reads as invented terminology) and "documentation and communication" (which was doing scope work the abstract can do instead).
+
+Other options, shorter to longer:
+
+### Large Language Models and Pediatric Dosing: A Systematic Review
+
+Nine words. Cleanest, but "and" is vague about what you're actually measuring.
+
+### Medication Dosing Errors in Large Language Model–Generated Pediatric Clinical Text: A Systematic Review
+
+Keeps the text-generation context. "Errors" is punchier than "accuracy" but slightly presupposes you'll find them — defensible for a review about error characterization, though a cautious reviewer may push back.
+
+### Accuracy and Safety of Large Language Models in Pediatric Medication Dosing: A Systematic Review
+
+Fourteen words. Closest to conventional clinical phrasing if you want to play it safe.
+
+One reason the recommended version is also the safer choice: dropping "clinical documentation and communication" means the title survives either search outcome. If your fourth Boolean block cuts the yield too far and you widen to pediatric dosing generally, the title still fits — no re-registration needed.
+
+Two small conventions: spell out "Large Language Models" rather than "LLMs" (better indexing, and some journals require expansion on first use anyway), and keep "A Systematic Review" — PRISMA asks for the design in the title.
