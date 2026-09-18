@@ -1,7 +1,7 @@
 # What i s Spring Al?
 Framework for integrating Al into Spring applications.
 - Simplifies adding generative Al using Spring's modular, POJO-based design.
-- Connects enterprise d a t a a n d APIs w i t h Al m o d e l s seamlessly.
+- Connects enterprise data and APIs with Al models seamlessly.
 
 ## Core Features
 - Multi-Provider Support: Integrates with OpenAl, Anthropic, AWS, Google,
@@ -9,7 +9,7 @@ Hugging Face for chat, embeddings, text-to-image, audio, and moderation.
 - MCP support: Allows building MCP clients and servers easily
 - Vector Store Integration: Supports RAG with Pinecone, Redis,
 PostgreSQL/pgVector, MongoDB, etc.
-Advanced Patterns: Chat memory, tool/function calling, and Advisors API
+- Advanced Patterns: Chat memory, tool/function calling, and Advisors API
 for reusable Al logic.
 - Observability & Guardrails: Monitors Al operations and evaluates outputs
 to ensure reliability.
@@ -41,7 +41,7 @@ or text generation.
 
 2. Generate a API key and configure in app
  - Go to the website  https://platofrom.openai.com/ and generate API key
- - Configure your API key in application.properties o r application.yml:
+ - Configure your API key in application.properties or application.yml:
 spring.ai.openai.api-key=$(OPENAI_API_KEY}
 
 3. Create CHatController
@@ -57,21 +57,21 @@ You now have a minimal working Spring Al app that connects t o OpenAl and respon
 
 #### What i s ChatModel?
 
-ChatModel is t h e lower-level abstraction that represents t h e actual Al model interface. It's the core component that:
+ChatModel is the lower-level abstraction that represents the actual Al model interface. It's the core component that:
 
 Defines the contract for communicating with different Al providers (OpenAl, Azure OpenAl, Anthropic, etc.)
 Handles the actual API calls to the Al services
 Manages model-specific configurations and parameters
 Provides the foundational layer for Al interactions
 
-Examples o f implementations:
+Examples of implementations:
 OpenAiChatModel ( for OpenAI )
 GeminiChatModel ( for Google )
-MistralChatmodel , e t c .
+MistralChatmodel , etc .
 Purpose: Encapsulates how to interact with a specific underlying Al provider.
 
 #### what is Chatclient?
-1. ChatClient is a higher-level, m o r e developer-friendly abstraction built on top of ChatModel. It provides:
+1. ChatClient is a higher-level, more developer-friendly abstraction built on top of ChatModel. It provides:
 
 - A fluent API for easier interaction with Al models
 - Better developer experience with method chaining
