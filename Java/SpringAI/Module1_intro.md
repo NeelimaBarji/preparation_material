@@ -89,5 +89,34 @@ It takes care of:
 3. Purpose: Simplifies working with an Al model and abstracts prompt/message handling.
 
 
+## The Relationship between ChatModel & ChatClient
+Think of it this way:
+
+ChatModel = The engine (does the heavy lifting of actual Al communication)
+ChatClient = The steering wheel and dashboard (provides an intuitive interface to control the engine)
+
+ChatClient uses ChatModel internally but wraps it with a more
+convenient API. When you use ChatClient, it eventually delegates
+to the underlying ChatModel to make the actual AI service calls.
+
+
+## ChatModel & ChatClient
+
+###  How They Work Together
+
+**Spring Boot Autoconfiguration:** When you add Spring AI dependencies, Spring Boot automatically creates `ChatModel` beans for configured AI providers.
+
+**ChatClient.Builder Creation:** The framework provides an autoconfigured `ChatClient.Builder` that's already wired with the appropriate `ChatModel`.
+
+**Fluent API Usage:** You use `ChatClient`'s fluent methods to build prompts, which internally get converted to the format expected by the `ChatModel`.
+
+**Execution:** `ChatClient` delegates to `ChatModel` to send requests to the AI service and handle responses.
+
+#### Example Flow
+
+Your Code → ChatClient (fluent API) → ChatModel (AI service integration) → AI Provider API
+
+
+This design follows the common pattern of having a low-level technical interface (`ChatModel`) and a high-level user-friendly interface (`ChatClient`) that makes the framework more accessible while maintaining flexibility for advanced use cases.
 
 
