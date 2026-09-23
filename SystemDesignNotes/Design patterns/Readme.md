@@ -24,3 +24,16 @@ Examples: Factory Pattern, Singleton Pattern, Builder Pattern
 3. Structural Patterns: Deal with the composition of objects or classes to form larger
 structures.
 Examples: Adapter Pattern, Composite Pattern, Decorator Pattern
+
+# Example use-cases
+- Creational Example: A factory that produces different types of
+documents (Word, PDF, Excel) depending on the input parameters.
+
+- Structural Example: Using the Adapter Pattern to integrate a new
+API into an existing codebase.
+
+- Behavioral Example: A notification system using the Observer
+Pattern, where various modules subscribe to system events.
+
+
+
