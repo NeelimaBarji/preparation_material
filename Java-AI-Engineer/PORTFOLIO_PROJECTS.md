@@ -101,3 +101,27 @@ For each project, document:
 7. Security and privacy controls.
 8. Failure modes, known limitations and future work.
 9. Demo walkthrough and sample inputs/outputs.
+
+## Shared platform engineering requirements for portfolio projects
+
+Use these requirements to demonstrate senior Java/backend engineering alongside AI skills.
+
+### Spring Boot and microservices
+- Keep a Spring Boot API as the authenticated entry point and orchestration boundary.
+- Define clear service responsibilities: API/gateway, ingestion worker, AI/retrieval service and notification adapter where justified.
+- Use typed configuration, validation, consistent error responses, Actuator health, security boundaries and integration tests.
+- Document why each service is separate; a modular monolith is acceptable for the first iteration.
+
+### Event-driven microservices
+- Use Kafka (or another documented broker) for asynchronous document-ingestion and long-running agent-job events.
+- Implement event IDs, idempotent consumers, retry/backoff and a dead-letter path.
+- Demonstrate an outbox pattern for reliable database-to-event publication.
+- Document partition keys, ordering assumptions, schema compatibility, consumer lag and replay safety.
+
+### Docker and Kubernetes
+- Provide multi-stage Dockerfiles for Java and Python components; run as non-root and keep secrets outside images.
+- Provide Docker Compose for local development with database, broker and services.
+- Add Kubernetes Deployment/Service manifests, ConfigMap/Secret references, probes and resource requests/limits.
+- Document rollout, rollback, scaling and troubleshooting.
+- Include logs, metrics and distributed trace correlation across services and AI tool calls.
+
