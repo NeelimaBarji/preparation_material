@@ -4,9 +4,15 @@
 **Duration:** 24 weeks (6 months)  
 **Study budget:** 12 hours/week  
 **Language strategy:** Java + Python  
-**Focus:** Balanced Senior AI Application Engineering
+**Focus:** Lead Java AI Engineer — architecture ownership, technical strategy, production AI systems, team leadership and hands-on engineering
 
 This program assumes a six-day learning week plus a weekly review. Each study day is approximately 1.5–2.5 hours. Use the weekly hours flexibly; consistency and working deliverables matter more than exact weekdays.
+
+## Lead-level outcome
+
+The target is not simply to build LLM demos. By the end of 24 weeks, you should be able to lead the design and delivery of secure, reliable AI-enabled platforms; make build/buy/model choices; set engineering standards; mentor developers; communicate trade-offs to product, security and platform teams; and remain hands-on in Java and Python.
+
+Use the existing daily technical exercises below as the hands-on foundation. In parallel, complete the leadership and architecture assignments in [LEADERSHIP_AND_ARCHITECTURE_TRACK.md](./LEADERSHIP_AND_ARCHITECTURE_TRACK.md). Each week should produce both a working technical artifact and a leadership artifact (ADR, design review, runbook, roadmap, risk register, mentoring plan or executive summary).
 
 ## How to use this plan
 
@@ -344,6 +350,8 @@ Score each dimension from 1 to 5 at the end of every week.
 - [ ] Can secure and deploy a multi-service AI application.
 - [ ] Can design an enterprise AI system at senior level.
 - [ ] Can present 2–3 projects with measurable evidence and honest limitations.
+
+**Lead-level readiness standard:** For every major design, be prepared to explain the business problem, requirements, alternatives, cost/latency/reliability/security trade-offs, operational ownership, rollout plan and measurable success criteria. A lead answer should show how you align a team and make a decision—not only name technologies.
 
 **Reminder:** Six months is a structured target, not a guarantee of job readiness. Use assessment scores and project quality to decide when to apply; begin networking and reviewing role requirements before Month 6.
 
