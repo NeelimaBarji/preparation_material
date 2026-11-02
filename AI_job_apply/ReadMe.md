@@ -4,9 +4,10 @@ Notes and resources for structuring a job search, mapping role requirements to s
 
 ## Contents
 
-- [Role and job-description research](./JD/) — role requirements and skill analysis.
-- [Skill preparation workspace](./Skill1/README.md) — reusable skill/workflow notes.
-- [AI-assisted application note](./ReadMe.md) — this index.
+- [AI Engineer role notes](./JD/AI-Engineer.md)
+- [Generative AI Java profile](./JD/GenAI_java_profile.md)
+- [Java developer with GenAI skills](./JD/skills_java_AI.md)
+- [Skill preparation workspace](./Skill1/README.md)
 
 ## Suggested workflow
 
