@@ -115,3 +115,14 @@ This is a personal learning repository, but suggestions and corrections are welc
 <p align="center">
   <em>Learn deeply. Build thoughtfully. Explain clearly.</em>
 </p>
+## Applied project portfolio
+
+These companion repositories contain runnable projects and experiments that complement the notes in this knowledge base:
+
+| Repository | Focus |
+|---|---|
+| [SpringBoot-Projects](https://github.com/NeelimaBarji/SpringBoot-Projects) | Spring Boot REST APIs, JPA/Hibernate, microservices, and Docker learning projects |
+| [Google_5days_agentic_ai](https://github.com/NeelimaBarji/Google_5days_agentic_ai) | Agentic AI exercises and the DevLoop multi-agent SDLC capstone |
+| [AngularRepo](https://github.com/NeelimaBarji/AngularRepo) | Angular and TypeScript frontend project |
+
+Use this repository for structured study and interview revision; use the linked project repositories to explore implementation examples.
