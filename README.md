@@ -29,6 +29,21 @@ Welcome! This repository is my organized engineering study space for preparing f
 | Research notes | Research ideas, study plans, protocols, and supporting reading | [Explore Research](./Researches/README.md) |
 | Progress log | Ongoing study and learning updates | [Open Notes](./Notes/README.md) |
 
+## Java AI Engineer — 6-month preparation
+
+A detailed 24-week daily plan for an experienced Java developer building skills across Java + Python, LLMs, RAG, Agentic AI, and production AI engineering.
+
+| Guide | Contents |
+|---|---|
+| [Daily preparation program](./Java-AI-Engineer/DAILY_PREPARATION_PROGRAM.md) | Day-by-day topics, coding assignments, interview Q&A, weekly assessments, and milestones |
+| [Six-month roadmap](./Java-AI-Engineer/SIX_MONTH_ROADMAP.md) | Month-by-month learning outcomes |
+| [Skills and technologies](./Java-AI-Engineer/SKILLS_AND_TECHNOLOGIES.md) | Recommended stack and depth |
+| [Interview checklist](./Java-AI-Engineer/INTERVIEW_CHECKLIST.md) | Senior-level topic checklist and sample answers |
+| [Portfolio projects](./Java-AI-Engineer/PORTFOLIO_PROJECTS.md) | DevOps RCA agent, enterprise RAG assistant, Snowflake AI analyst |
+| [Weekly schedule](./Java-AI-Engineer/WEEKLY_SCHEDULE.md) | Repeatable 12-hour weekly cadence |
+| [Learning resources](./Java-AI-Engineer/RESOURCES.md) | Official documentation and courses |
+| [Progress tracker](./Java-AI-Engineer/PROGRESS_TRACKER.md) | 24-week progress and assessment log |
+
 ## Recommended learning paths
 
 ### 1. Senior Java / Spring Boot engineer
