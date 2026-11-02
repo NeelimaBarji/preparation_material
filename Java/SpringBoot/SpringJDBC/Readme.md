@@ -803,6 +803,10 @@ When SQL needs to be explicit and database-oriented, such as complex reporting q
 - [Spring Framework: Choosing an approach for JDBC access](https://springframework.org/spring-framework/reference/data-access/jdbc/choose-style.html)
 - [Spring Boot documentation](https://docs.spring.io/spring-boot/reference/)
 
+## Visual diagrams
+
+See [Visualizations.md](./Visualizations.md) for Mermaid diagrams covering the Spring JDBC architecture, JdbcTemplate query lifecycle, row-mapping strategies, transactions, batch processing, exception translation, data-access choices, and large-result-set processing.
+
 ---
 
 **Key takeaway:** Spring JDBC keeps SQL in the developer's hands while Spring manages the repetitive JDBC infrastructure. Understand JdbcTemplate, RowMapper, named parameters, batch updates, exception translation, connection pooling, and transaction management to use it effectively in production Spring Boot services.
