@@ -176,3 +176,19 @@ Score each from 1–5: concepts, coding, debugging, interview explanation, docum
 ## Learning references
 
 See [RESOURCES.md](./RESOURCES.md) for official documentation and course links.
+
+## Enterprise backend and cloud-native engineering track
+
+Carry these skills through all six months instead of treating them as a separate final topic:
+
+| Month | Platform focus | Required practical output |
+|---|---|---|
+| 1 | Spring Boot foundations: REST, DI, configuration, validation, testing and Actuator | Secure, tested Spring Boot API |
+| 2 | Spring AI inside Spring Boot; API contracts, resilience and service boundaries | Java LLM service with timeouts, metrics and tests |
+| 3 | Microservices boundaries and event-driven ingestion concepts | Separate ingestion/query responsibilities and document service contracts |
+| 4 | Kafka, event schemas, consumer groups, idempotency, outbox, retry and DLQ | Event-driven document/agent job workflow |
+| 5 | Docker, Compose, Kubernetes Deployments/Services, probes, secrets, resource limits and rollout | Containerized Java/Python system deployed with operational runbook |
+| 6 | Distributed-system design, Sagas, event replay, incident response, CI/CD and scaling | Defend end-to-end architecture and failure-handling decisions |
+
+**Senior-level expectation:** Explain when a modular monolith is preferable to microservices, REST is preferable to messaging, and when Kubernetes or Kafka adds more operational cost than value. Demonstrate the concepts in the portfolio projects rather than collecting tools without a use case.
+
