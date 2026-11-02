@@ -346,3 +346,45 @@ Score each dimension from 1 to 5 at the end of every week.
 - [ ] Can present 2–3 projects with measurable evidence and honest limitations.
 
 **Reminder:** Six months is a structured target, not a guarantee of job readiness. Use assessment scores and project quality to decide when to apply; begin networking and reviewing role requirements before Month 6.
+
+## Cross-cutting backend platform skills — Spring Boot, microservices, event-driven systems, Docker and Kubernetes
+
+These are core skills for a senior Java AI Engineer, not optional deployment extras. Revisit them throughout the 24 weeks and apply them to the RAG and Agentic AI projects. The AI services should run as production-style distributed systems.
+
+### Backend engineering track (woven through the 24 weeks)
+
+| When | Topics to prepare | Hands-on assignment | Senior interview prompt |
+|---|---|---|---|
+| Weeks 1–2 | Spring Boot 3, dependency injection, auto-configuration, profiles, configuration properties, validation, exception handling, Actuator | Create a Spring Boot service with layered architecture, typed configuration, validation, global error handling and health endpoints | **Q:** How does Spring Boot auto-configuration work? **A:** It uses conditional configuration and classpath/bean/environment conditions to provide defaults that can be overridden by application configuration or user beans. |
+| Weeks 3–4 | REST API design, versioning, pagination, idempotency, Spring Security, OAuth2/JWT concepts | Add secured REST endpoints, request validation, API contract tests and consistent error responses | **Q:** How do you make a REST operation idempotent? **A:** Define an idempotency key or stable resource identity, persist request outcome, and ensure retries do not duplicate side effects. |
+| Weeks 7–8 | Spring AI inside Spring Boot, ChatClient/service boundaries, resilience, configuration, observability | Keep model integration behind an application service; add timeout, bounded retry, circuit breaker and metrics | **Q:** Where should LLM calls live in a Spring application? **A:** Behind an application/service boundary with provider abstraction, validation, policy, observability and testable business logic. |
+| Weeks 9–12 | Microservices boundaries, API gateway, service discovery concepts, synchronous vs asynchronous communication, distributed tracing | Split ingestion and query serving only when justified; define API contracts and correlation IDs | **Q:** How do you choose a microservice boundary? **A:** Align it to cohesive business capability, data ownership, change cadence and independent scaling—not technical layers alone. |
+| Weeks 13–16 | Event-driven microservices, Kafka fundamentals, topics/partitions, consumer groups, ordering, delivery semantics, schema evolution, outbox, DLQ | Emit document-ingestion and agent-task events; build idempotent consumers, retry topics/DLQ and an outbox-backed publisher | **Q:** How do you prevent duplicate event processing? **A:** Assume at-least-once delivery, use stable event IDs and idempotent consumers, and coordinate state changes with an outbox/inbox or transactional design. |
+| Weeks 17–18 | Distributed transactions, Saga, eventual consistency, retries, circuit breakers, bulkheads, timeouts, rate limiting | Model an async AI job lifecycle with accepted/running/succeeded/failed states and compensating actions where needed | **Q:** When use Saga instead of a distributed transaction? **A:** When a business process spans independently owned services and can tolerate eventual consistency with explicit compensating actions. |
+| Weeks 19–20 | Docker, multi-stage builds, image layers, non-root containers, health checks, Compose, Kubernetes Deployments/Services/ConfigMaps/Secrets, probes, requests/limits, autoscaling | Containerize Java and Python services; run dependencies locally with Compose; deploy to Kubernetes with readiness/liveness probes and resource limits | **Q:** Readiness vs liveness? **A:** Readiness determines whether a pod should receive traffic; liveness detects a stuck process that should be restarted. |
+| Weeks 20–21 | Kubernetes rollout/rollback, HPA, service networking, ingress, persistent storage, RBAC, namespaces, observability | Add rolling deployment, resource requests/limits, secrets references, service discovery and a rollback runbook | **Q:** How do you scale an AI microservice? **A:** Scale by workload and bottleneck; consider CPU/memory, concurrent model requests, provider quotas, queue depth, latency and cost—not CPU alone. |
+| Weeks 22–24 | Architecture trade-offs, production incident response, CI/CD, contract testing, event replay and operational readiness | Present an end-to-end architecture with synchronous APIs, async events, Docker images, Kubernetes deployment and tracing | **Q:** When should you not use microservices or Kafka? **A:** Avoid distributed complexity when a modular monolith or synchronous call meets scale, ownership, latency and reliability requirements. |
+
+### Event-driven AI architecture practice
+
+Apply this reference flow to the RAG and DevOps projects:
+
+1. A Spring Boot API authenticates the request and stores a job/document record.
+2. The service writes an event to an outbox in the same database transaction.
+3. An outbox publisher sends the event to Kafka (or a local broker for development).
+4. An ingestion/AI worker consumes the event, validates it, and processes it idempotently.
+5. Long-running work updates job state and emits completion/failure events.
+6. A notification service reacts to completion events; clients poll or subscribe for status.
+7. Failed events use bounded retries and a dead-letter queue; replay is an explicit, audited operation.
+
+Be ready to explain ordering, partition keys, consumer lag, schema compatibility, poison messages, replay safety, eventual consistency and observability.
+
+### Minimum platform deliverables
+
+- [ ] A Spring Boot service with validation, security boundary, Actuator health and tests.
+- [ ] A microservice design with clear ownership and versioned API contracts.
+- [ ] An event-driven flow using Kafka (or equivalent), outbox, idempotent consumer, retry and DLQ.
+- [ ] Dockerfiles for Java and Python services plus a local Compose environment.
+- [ ] Kubernetes manifests for Deployment, Service, ConfigMap/Secret references, probes and resource requests/limits.
+- [ ] A deployment/rollback runbook with logs, metrics and distributed trace correlation.
+
