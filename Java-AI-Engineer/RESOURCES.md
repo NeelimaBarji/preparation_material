@@ -50,3 +50,16 @@ Prefer official documentation for API behavior and framework details. Courses ar
 - Use Spring AI for the Java integration path and Python SDKs for Python service experiments.
 - Start with pgvector for vector-search fundamentals; introduce managed vector services only when scale, availability, or operations justify them.
 - Framework APIs change. Pin versions in your project and consult official documentation before adopting examples.
+
+## Spring Boot, microservices, messaging and cloud-native deployment
+- [Spring Boot reference](https://docs.spring.io/spring-boot/reference/)
+- [Spring Security reference](https://docs.spring.io/spring-security/reference/)
+- [Spring Cloud documentation](https://spring.io/projects/spring-cloud)
+- [Apache Kafka documentation](https://kafka.apache.org/documentation/)
+- [Spring for Apache Kafka](https://docs.spring.io/spring-kafka/reference/)
+- [Docker documentation](https://docs.docker.com/)
+- [Docker Compose documentation](https://docs.docker.com/compose/)
+- [Kubernetes documentation](https://kubernetes.io/docs/home/)
+- [Kubernetes concepts](https://kubernetes.io/docs/concepts/)
+- [OpenTelemetry documentation](https://opentelemetry.io/docs/)
+
