@@ -91,3 +91,46 @@ A: Track latency, error rate, token usage/cost, model versions, retrieval qualit
 
 **Q: When should you not use an agent?**  
 A: When steps are predictable, auditable, and can be expressed as a deterministic workflow. Agents add latency, cost, nondeterminism, and safety complexity; use autonomy only where it creates measurable value.
+
+## Spring Boot, microservices, event-driven architecture and cloud-native deployment
+
+- [ ] Spring Boot auto-configuration, starters, conditional beans and dependency injection
+- [ ] Profiles, configuration properties, validation and exception handling
+- [ ] Spring Security, OAuth2/JWT concepts, service-to-service authentication
+- [ ] Actuator, health/readiness endpoints, metrics and application observability
+- [ ] REST API design, versioning, pagination, idempotency and contract testing
+- [ ] Microservice boundaries, database-per-service and data ownership
+- [ ] API gateway, service discovery concepts and distributed tracing
+- [ ] Synchronous REST vs asynchronous messaging trade-offs
+- [ ] Kafka topics, partitions, keys, consumer groups and ordering
+- [ ] At-most-once, at-least-once and exactly-once processing semantics and practical limits
+- [ ] Idempotent consumers, event IDs, deduplication and replay
+- [ ] Transactional outbox/inbox patterns and CDC concepts
+- [ ] Retry topics, dead-letter queues, poison messages and backoff
+- [ ] Schema registry, event schema evolution and compatibility
+- [ ] Saga, eventual consistency and compensating transactions
+- [ ] Docker images, layers, multi-stage builds, non-root containers and Compose
+- [ ] Kubernetes Pods, Deployments, Services, Ingress, ConfigMaps and Secrets
+- [ ] Readiness/liveness/startup probes, requests/limits and HPA
+- [ ] Rolling deployments, rollbacks, namespaces, RBAC and service networking
+- [ ] CI/CD, image scanning, secrets, monitoring and production incident response
+
+## Additional senior-level platform interview prompts
+
+**Q: How do you design reliable event processing?**  
+A: Assume messages can be delivered more than once. Use stable event IDs, idempotent consumers, bounded retries, dead-letter handling, schema compatibility, observability and explicit replay procedures. If publishing follows a database update, use an outbox or another consistency strategy.
+
+**Q: Why use the transactional outbox pattern?**  
+A: It avoids the dual-write gap between committing business data and publishing an event. The application writes both the business change and outbox row in one database transaction; a separate publisher delivers the event, with consumers designed for duplicates.
+
+**Q: How do you decide between REST and Kafka?**  
+A: Use REST for request/response interactions that need an immediate result and clear synchronous contract. Use events for decoupled, asynchronous workflows, fan-out and buffering. Consider ordering, latency, replay, operational complexity and consistency requirements.
+
+**Q: How do you deploy a Spring Boot + Python AI system on Kubernetes?**  
+A: Build minimal versioned images, externalize configuration/secrets, define Deployments and Services, configure probes and resource requests/limits, apply identity/RBAC and network policies, add telemetry, and use rolling rollout with health checks and rollback.
+
+**Q: How do you scale event-driven AI workers?**  
+A: Monitor consumer lag, queue depth, processing time, provider quotas, concurrency, memory and cost. Scale consumers within partition and downstream capacity limits; use backpressure, bounded concurrency and retry/DLQ policies.
+
+**Q: What Kubernetes probes should an AI service expose?**  
+A: Liveness should indicate whether the process is stuck and needs restart; readiness should indicate whether it can accept traffic. Avoid making liveness depend on a transient external model provider outage, which could trigger restart loops.
