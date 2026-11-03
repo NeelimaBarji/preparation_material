@@ -1,78 +1,42 @@
 # Spring AI Architecture
 
-## Visualization
+## 1. Big Picture
 
-```text
-+---------------------------+
-|     Spring Boot App       |
-| Controller / Service      |
-+-------------+-------------+
-              |
-              v
-+---------------------------+
-|        ChatClient         |
-| Application-facing API   |
-+-------------+-------------+
-              |
-              v
-+---------------------------+
-|      Advisor Chain        |
-| Memory / RAG / Tools      |
-+-------------+-------------+
-              |
-              v
-+---------------------------+
-|        ChatModel          |
-| Provider abstraction      |
-+-------------+-------------+
-              |
-      +-------+-------+
-      |       |       |
-      v       v       v
-   OpenAI  Azure    Ollama
-      |       |       |
-      +-------+-------+
-              |
-              v
-       Foundation Model
-```
+`mermaid
+flowchart TD
+ A[Spring Boot Application] --> B[Spring AI]
+ B --> C[ChatClient]
+ B --> D[EmbeddingModel]
+ B --> E[VectorStore]
+ C --> F[Advisor Chain]
+ F --> G[ChatModel]
+ G --> H[Provider Adapter]
+ H --> I[OpenAI / Azure OpenAI / Anthropic / Google / Ollama]
+ D --> J[Embedding Provider]
+ E --> K[(Vector Database)]
+`
 
-## Responsibility boundaries
+## 2. Responsibility Boundaries
 
-**Application layer**
-- Business rules
-- API contracts
-- Authentication/authorization
-- Domain orchestration
+| Layer | Responsibility |
+|---|---|
+| Application | Business rules, API contracts, authorization |
+| ChatClient | Application-facing AI interaction |
+| Advisors | Reusable AI middleware |
+| ChatModel | Model/provider abstraction |
+| Provider adapter | Provider-specific translation |
+| Model | Generates response |
 
-**ChatClient**
-- Prompt construction
-- Application-facing AI interaction
+## 3. Lead-Level Architecture Rule
 
-**Advisor layer**
-- Reusable GenAI behaviors
+Keep business logic independent from vendor SDK request/response types where practical.
 
-**ChatModel**
-- Model/provider communication abstraction
+`mermaid
+flowchart LR
+ A[OrderService] --> B[ChatClient]
+ B --> C[ChatModel]
+ C --> D[Provider Adapter]
+ D --> E[LLM]
+`
 
-**Provider adapter**
-- Provider-specific translation
-
-**Model**
-- Generates the AI response
-
-## Lead-level rule
-
-Keep business logic independent from vendor SDK classes where practical.
-
-Preferred:
-
-```text
-OrderService
-   |
-ChatClient
-   |
-ChatModel abstraction
-```
-
-Avoid spreading provider-specific request/response types through the domain layer.
+**Interview takeaway:** Spring AI reduces provider coupling, but provider-specific capabilities still need to be understood and tested.
