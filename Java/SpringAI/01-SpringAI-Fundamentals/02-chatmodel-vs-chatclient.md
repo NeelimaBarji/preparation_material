@@ -1,63 +1,43 @@
 # ChatModel vs ChatClient
 
-## Mental model
+## 1. Visual Mental Model
 
-```text
-ChatClient
-    |
-    | High-level fluent API
-    v
-ChatModel
-    |
-    | Provider/model abstraction
-    v
-Provider implementation
-    |
-    v
-LLM
-```
+`mermaid
+flowchart TD
+ A[Application] --> B[ChatClient]
+ B --> C[Advisor Chain]
+ C --> D[ChatModel]
+ D --> E[Provider Implementation]
+ E --> F[LLM]
+`
 
-## ChatModel
+## 2. ChatModel
 
-Use when you need:
-- lower-level control
-- direct model interaction
-- custom orchestration
-- model/provider-specific handling
+Think: **How does my application communicate with the model?**
 
-## ChatClient
+Use it for lower-level control, direct model interaction, custom orchestration, or specialized provider handling.
 
-Use when you need:
-- fluent application code
-- prompt composition
-- Advisors
-- tool calling
-- streaming
-- response extraction
+## 3. ChatClient
 
-## Interview answer
+Think: **How does my application use AI?**
 
-`ChatModel` is the lower-level abstraction for a chat model implementation. `ChatClient` is the application-friendly fluent API used to interact with chat models and compose application behavior. In most Spring applications I would use ChatClient and use ChatModel directly for specialized low-level orchestration.
+`java
+String answer = chatClient
+        .prompt()
+        .user("Explain dependency injection")
+        .call()
+        .content();
+`
 
-## Typical code
+## 4. Comparison
 
-```java
-@RestController
-class ChatController {
+| ChatModel | ChatClient |
+|---|---|
+| Lower-level | Higher-level |
+| Model abstraction | Application-facing fluent API |
+| More control | Better developer ergonomics |
+| Specialized orchestration | Typical application choice |
 
-    private final ChatClient chatClient;
+## 5. Interview Answer
 
-    ChatController(ChatClient.Builder builder) {
-        this.chatClient = builder.build();
-    }
-
-    @GetMapping("/chat")
-    String chat(@RequestParam String message) {
-        return chatClient
-                .prompt()
-                .user(message)
-                .call()
-                .content();
-    }
-}
-```
+ChatModel is the lower-level abstraction for a chat model implementation. ChatClient is the higher-level fluent API used by application code to compose prompts and AI behavior. I would normally use ChatClient and use ChatModel when specialized low-level orchestration is required.
