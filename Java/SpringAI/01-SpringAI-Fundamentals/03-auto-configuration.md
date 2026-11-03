@@ -1,46 +1,42 @@
 # Spring Boot Auto-Configuration for Spring AI
 
-## Flow
+## 1. How Configuration Becomes Beans
 
-```text
-Spring AI Starter
-       |
-       v
-application.yml / properties
-       |
-       v
-Spring Boot Auto-Configuration
-       |
-       +--> ChatModel
-       +--> ChatClient.Builder
-       +--> Integration infrastructure
-       |
-       v
-Application beans
-```
+`mermaid
+flowchart TD
+ A[Spring AI Starter] --> B[application.yml / properties]
+ B --> C[Spring Boot Auto-Configuration]
+ C --> D[ChatModel Bean]
+ C --> E[ChatClient.Builder]
+ C --> F[Integration Infrastructure]
+ D --> G[Application]
+ E --> G
+ F --> G
+`
 
-## Good practices
-- Use the appropriate Spring AI starter
-- Keep provider settings in configuration
-- Inject beans instead of manually creating clients everywhere
-- Use environment-specific configuration
-- Keep secrets outside source control
+## 2. Secure Configuration
 
-### Secure configuration
-
-```properties
+`properties
 spring.ai.openai.api-key=${OPENAI_API_KEY}
-```
+`
 
-Production secret flow:
+`mermaid
+flowchart LR
+ A[Developer] --> B[Environment / Secret Store]
+ C[CI/CD] --> D[CI Secret Variables]
+ E[Kubernetes] --> F[Secret / External Secret]
+ G[Cloud] --> H[Managed Secret Service]
+`
 
-```text
-Local -> local secret / environment
-CI/CD -> secret variables
-Kubernetes -> Secret / External Secret
-Cloud -> managed secret service
-```
+**Never commit provider API keys into Git.**
 
-## Interview point
+## 3. Good Practices
 
-Auto-configuration reduces boilerplate, but senior engineers still need to understand which beans exist, how configuration is resolved, and when to override defaults.
+- Use the appropriate Spring AI starter.
+- Inject configured beans instead of constructing provider clients everywhere.
+- Externalize environment-specific configuration.
+- Keep secrets outside source control.
+
+## Interview Point
+
+Auto-configuration reduces boilerplate, but senior engineers should understand bean creation, configuration resolution, and where application-specific overrides belong.
