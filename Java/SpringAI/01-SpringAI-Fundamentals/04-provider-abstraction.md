@@ -1,52 +1,46 @@
 # Provider Abstraction and Model Portability
 
-## Architecture
+## 1. Architecture
 
-```text
-                 Application
-                     |
-                 ChatClient
-                     |
-                 ChatModel
-          +----------+----------+
-          |          |          |
-       OpenAI     Azure       Ollama
-          |          |          |
-        Cloud      Cloud       Local
-```
+`mermaid
+flowchart TD
+ A[Application] --> B[ChatClient]
+ B --> C[ChatModel]
+ C --> D[OpenAI]
+ C --> E[Azure OpenAI]
+ C --> F[Ollama]
+ C --> G[Other Providers]
+`
 
-## Why provider abstraction?
+## 2. Why Abstract the Provider?
 
-Provider choice can change because of price, latency, availability, data residency, security requirements, capability, quality, and vendor strategy.
+Provider choice can change because of price, latency, availability, data residency, security, capability, quality, or vendor strategy.
 
-## Portability has limits
+## 3. Portability Has Limits
 
-Different providers/models may differ in:
-- tool calling
-- streaming
-- multimodality
-- structured output
-- context window
-- latency
-- cost
-- reasoning quality
+Providers/models may differ in tool calling, streaming, multimodality, structured output, context window, latency, cost, and reasoning quality.
 
-### Lead-level model routing
+## 4. Lead-Level Model Routing
 
-```text
-                 AI Routing Layer
-                       |
-          +------------+------------+
-          |                         |
-    Complex reasoning         Simple task
-          |                         |
-     Premium model             Fast model
-```
+`mermaid
+flowchart TD
+ A[AI Routing Layer] --> B[Complex reasoning]
+ A --> C[Simple task]
+ B --> D[Premium model]
+ C --> E[Fast / economical model]
+`
 
-Use capability tests and evaluation datasets before replacing a production model.
+## 5. Provider Fallback
 
-## Interview scenario
+`mermaid
+flowchart LR
+ A[Primary Model] -->|Success| B[Response]
+ A -->|Eligible failure| C[Fallback Model]
+ C --> B
+`
 
-**How would you design provider fallback?**
+Fallback should be explicit. Verify that the fallback supports required tools, output format, context size, and safety requirements.
 
-Keep application code on Spring AI abstractions, isolate provider-specific configuration, define explicit fallback eligibility, and verify that the fallback supports the required features. Monitor error rate, latency, cost, and quality after failover.
+## Interview Scenario
+
+**How would you design provider fallback?** Keep application code on Spring AI abstractions, isolate provider-specific configuration, define fallback eligibility, and monitor error rate, latency, cost, and quality.
