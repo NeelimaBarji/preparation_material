@@ -2,15 +2,15 @@
 
 ## 1. Architecture
 
-`mermaid
+```mermaid
 flowchart TD
- A[Application] --> B[ChatClient]
- B --> C[ChatModel]
- C --> D[OpenAI]
- C --> E[Azure OpenAI]
- C --> F[Ollama]
- C --> G[Other Providers]
-`
+    A[Application] --> B[ChatClient]
+    B --> C[ChatModel]
+    C --> D[OpenAI]
+    C --> E[Azure OpenAI]
+    C --> F[Ollama]
+    C --> G[Other Providers]
+```
 
 ## 2. Why Abstract the Provider?
 
@@ -22,22 +22,22 @@ Providers/models may differ in tool calling, streaming, multimodality, structure
 
 ## 4. Lead-Level Model Routing
 
-`mermaid
+```mermaid
 flowchart TD
- A[AI Routing Layer] --> B[Complex reasoning]
- A --> C[Simple task]
- B --> D[Premium model]
- C --> E[Fast / economical model]
-`
+    A[AI Routing Layer] --> B[Complex reasoning]
+    A --> C[Simple task]
+    B --> D[Premium model]
+    C --> E[Fast / economical model]
+```
 
 ## 5. Provider Fallback
 
-`mermaid
+```mermaid
 flowchart LR
- A[Primary Model] -->|Success| B[Response]
- A -->|Eligible failure| C[Fallback Model]
- C --> B
-`
+    A[Primary Model] -->|Success| B[Response]
+    A -->|Eligible failure| C[Fallback Model]
+    C --> B
+```
 
 Fallback should be explicit. Verify that the fallback supports required tools, output format, context size, and safety requirements.
 
