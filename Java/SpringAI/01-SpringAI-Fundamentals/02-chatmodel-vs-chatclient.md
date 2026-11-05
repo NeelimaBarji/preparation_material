@@ -2,14 +2,14 @@
 
 ## 1. Visual Mental Model
 
-`mermaid
+```mermaid
 flowchart TD
- A[Application] --> B[ChatClient]
- B --> C[Advisor Chain]
- C --> D[ChatModel]
- D --> E[Provider Implementation]
- E --> F[LLM]
-`
+    A[Application] --> B[ChatClient]
+    B --> C[Advisor Chain]
+    C --> D[ChatModel]
+    D --> E[Provider Implementation]
+    E --> F[LLM]
+```
 
 ## 2. ChatModel
 
@@ -21,13 +21,13 @@ Use it for lower-level control, direct model interaction, custom orchestration, 
 
 Think: **How does my application use AI?**
 
-`java
+```java
 String answer = chatClient
         .prompt()
         .user("Explain dependency injection")
         .call()
         .content();
-`
+```
 
 ## 4. Comparison
 
