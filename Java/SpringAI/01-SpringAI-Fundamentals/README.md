@@ -11,21 +11,20 @@ Spring AI is an application framework in the Spring ecosystem for integrating AI
 
 ### Mental model
 
-```text
-Spring Boot Application
-        |
-        v
-     Spring AI
-        |
-  +-----+-----+----------------+
-  |           |                |
-ChatClient Embeddings      VectorStore
-  |           |                |
-ChatModel  EmbeddingModel   Vector DB
-  |
-Provider Adapter
-  |
-OpenAI / Azure / Anthropic / Ollama / Bedrock / ...
+```mermaid
+flowchart TD
+    A[Spring Boot Application] --> B[Spring AI]
+
+    B --> C[ChatClient]
+    B --> D[Embeddings]
+    B --> E[VectorStore]
+
+    C --> F[ChatModel]
+    D --> G[EmbeddingModel]
+    E --> H[Vector DB]
+
+    F --> I[Provider Adapter]
+    I --> J[OpenAI / Azure / Anthropic / Ollama / Bedrock / ...]
 ```
 
 Spring AI provides common abstractions while still allowing provider-specific capabilities.
@@ -34,28 +33,21 @@ Spring AI provides common abstractions while still allowing provider-specific ca
 
 Without an abstraction:
 
-```text
-Business Service
-      |
-Vendor SDK
-      |
-Vendor Request/Response Types
-      |
-Specific Provider
+```mermaid
+flowchart TD
+    A[Business Service] --> B[Vendor SDK]
+    B --> C[Vendor Request / Response Types]
+    C --> D[Specific Provider]
 ```
 
 With Spring AI:
 
-```text
-Business Service
-      |
-   ChatClient
-      |
-   ChatModel
-      |
-+-----+-----------+
-|                 |
-OpenAI           Ollama
+```mermaid
+flowchart TD
+    A[Business Service] --> B[ChatClient]
+    B --> C[ChatModel]
+    C --> D[OpenAI]
+    C --> E[Ollama]
 ```
 
 Benefits:
@@ -116,26 +108,17 @@ String answer = chatClient
 
 ## 5. Request Lifecycle
 
-```text
-HTTP / Event
-    |
-Controller / Service
-    |
-ChatClient
-    |
-Advisor Chain
-    |
-ChatModel
-    |
-Provider Adapter
-    |
-LLM Provider
-    |
-Model
-    |
-ChatResponse
-    |
-Application Response
+```mermaid
+flowchart TD
+    A[HTTP / Event] --> B[Controller / Service]
+    B --> C[ChatClient]
+    C --> D[Advisor Chain]
+    D --> E[ChatModel]
+    E --> F[Provider Adapter]
+    F --> G[LLM Provider]
+    G --> H[Model]
+    H --> I[ChatResponse]
+    I --> J[Application Response]
 ```
 
 The Advisor chain is where reusable behaviors such as retrieval, memory, and tool calling can participate in the request.
@@ -144,18 +127,14 @@ The Advisor chain is where reusable behaviors such as retrieval, memory, and too
 
 Conceptually:
 
-```text
-Spring AI Starter
-       |
-application.yml / properties
-       |
-Spring Boot Auto-Configuration
-       |
-ChatModel bean
-       |
-ChatClient.Builder
-       |
-Application
+```mermaid
+flowchart TD
+    A[Spring AI Starter] --> B[application.yml / properties]
+    B --> C[Spring Boot Auto-Configuration]
+    C --> D[ChatModel Bean]
+    C --> E[ChatClient.Builder]
+    D --> F[Application]
+    E --> F
 ```
 
 Benefits:
@@ -175,17 +154,18 @@ Never commit real provider secrets.
 
 ## 7. Provider Abstraction
 
-```text
-                 Application
-                      |
-                  ChatClient
-                      |
-                  ChatModel
-           +----------+----------+
-           |          |          |
-       OpenAI      Azure      Ollama
-           |          |          |
-         Cloud      Cloud      Local
+```mermaid
+flowchart TD
+    A[Application] --> B[ChatClient]
+    B --> C[ChatModel]
+
+    C --> D[OpenAI]
+    C --> E[Azure]
+    C --> F[Ollama]
+
+    D --> G[Cloud]
+    E --> G
+    F --> H[Local]
 ```
 
 ### Important interview point
@@ -208,19 +188,13 @@ Design around the common abstraction, but verify capabilities before switching p
 
 A model request can contain:
 
-```text
-System instructions
-        +
-User request
-        +
-Conversation history
-        +
-Retrieved context
-        +
-Tool definitions/results
-        |
-        v
-       LLM
+```mermaid
+flowchart TD
+    A[System instructions] --> F[LLM]
+    B[User request] --> F
+    C[Conversation history] --> F
+    D[Retrieved context] --> F
+    E[Tool definitions / results] --> F
 ```
 
 System prompts define behavior and policy. User prompts carry the current task.
@@ -263,16 +237,12 @@ record IncidentSummary(
 
 Pipeline:
 
-```text
-LLM Output
-   |
-Structured Mapping
-   |
-Java POJO / Record
-   |
-Validation
-   |
-Business Logic
+```mermaid
+flowchart TD
+    A[LLM Output] --> B[Structured Mapping]
+    B --> C[Java POJO / Record]
+    C --> D[Validation]
+    D --> E[Business Logic]
 ```
 
 Treat model output as untrusted input and validate it.
@@ -281,14 +251,10 @@ Treat model output as untrusted input and validate it.
 
 Embeddings convert text into numerical vectors.
 
-```text
-"Spring Boot microservices"
-            |
-            v
-      Embedding Model
-            |
-            v
-[0.12, -0.08, 0.44, ...]
+```mermaid
+flowchart LR
+    A[Spring Boot microservices] --> B[Embedding Model]
+    B --> C[Vector representation]
 ```
 
 Embeddings are primarily used for semantic retrieval and similarity.
@@ -303,30 +269,22 @@ Embeddings are primarily used for semantic retrieval and similarity.
 
 ## 12. VectorStore
 
-```text
-Document
-   |
-Chunk
-   |
-EmbeddingModel
-   |
-Vector
-   |
-VectorStore
+```mermaid
+flowchart TD
+    A[Document] --> B[Chunk]
+    B --> C[EmbeddingModel]
+    C --> D[Vector]
+    D --> E[VectorStore]
 ```
 
 At query time:
 
-```text
-User Question
-      |
-EmbeddingModel
-      |
-Query Vector
-      |
-Similarity Search
-      |
-Top-K Chunks
+```mermaid
+flowchart TD
+    A[User Question] --> B[EmbeddingModel]
+    B --> C[Query Vector]
+    C --> D[Similarity Search]
+    D --> E[Top-K Chunks]
 ```
 
 Spring AI provides a portable VectorStore API across many vector database integrations.
@@ -337,11 +295,9 @@ An Advisor is reusable AI request/response processing logic.
 
 Think:
 
-```text
-Spring Filter / Interceptor / AOP
-              |
-              ~
-      Spring AI Advisor
+```mermaid
+flowchart LR
+    A[Spring Filter / Interceptor / AOP] -. analogous to .-> B[Spring AI Advisor]
 ```
 
 Examples:
@@ -354,18 +310,13 @@ Examples:
 
 ### Advisor chain
 
-```text
-ChatClient
-   |
-Advisor A
-   |
-Advisor B
-   |
-ToolCallingAdvisor
-   |
-ChatModel
-   |
-Provider
+```mermaid
+flowchart TD
+    A[ChatClient] --> B[Advisor A]
+    B --> C[Advisor B]
+    C --> D[ToolCallingAdvisor]
+    D --> E[ChatModel]
+    E --> F[Provider]
 ```
 
 Advisor ordering can change application behavior, so it is a lead-level design concern.
@@ -374,28 +325,18 @@ Advisor ordering can change application behavior, so it is a lead-level design c
 
 Tool calling allows a model to request that the **application** invoke a function.
 
-```text
-User
- |
-ChatClient
- |
-LLM
- |
-Tool Request
- |
-ToolCallingAdvisor
- |
-ToolCallingManager
- |
-Java Tool
- |
-Backend API / DB
- |
-Tool Result
- |
-LLM
- |
-Final Answer
+```mermaid
+flowchart TD
+    A[User] --> B[ChatClient]
+    B --> C[LLM]
+    C --> D[Tool Request]
+    D --> E[ToolCallingAdvisor]
+    E --> F[ToolCallingManager]
+    F --> G[Java Tool]
+    G --> H[Backend API / DB]
+    H --> I[Tool Result]
+    I --> C
+    C --> J[Final Answer]
 ```
 
 Critical security principle:
@@ -408,15 +349,14 @@ In the current Spring AI 2.x architecture, ChatClient's tool-calling loop is han
 
 Conversation memory stores interaction history.
 
-```text
-Conversation ID
-   |
-   +-- User message
-   +-- Assistant response
-   +-- User message
-   +-- Assistant response
-   |
-Memory Repository
+```mermaid
+flowchart TD
+    A[Conversation ID] --> B[User message]
+    A --> C[Assistant response]
+    A --> D[User message]
+    A --> E[Assistant response]
+
+    A --> F[Memory Repository]
 ```
 
 Memory is different from RAG:
@@ -430,13 +370,12 @@ They can be combined.
 
 Model Context Protocol standardizes interoperability with external tools, resources, and prompts.
 
-```text
-Spring AI Application
-        |
-       MCP
-   +----+-----+------+
-   |          |      |
-GitHub      Jira   Slack
+```mermaid
+flowchart LR
+    A[Spring AI Application] --> B[MCP]
+    B --> C[GitHub]
+    B --> D[Jira]
+    B --> E[Slack]
 ```
 
 Spring AI can consume MCP server capabilities and expose Spring-based capabilities through an MCP server.
@@ -445,36 +384,25 @@ Spring AI can consume MCP server capabilities and expose Spring-based capabiliti
 
 ### Ingestion
 
-```text
-PDF / DOC / HTML
-       |
-Document Reader
-       |
-Transformer
-       |
-Text Splitter
-       |
-EmbeddingModel
-       |
-VectorStore
+```mermaid
+flowchart LR
+    A[PDF / DOC / HTML] --> B[Document Reader]
+    B --> C[Transformer]
+    C --> D[Text Splitter]
+    D --> E[EmbeddingModel]
+    E --> F[VectorStore]
 ```
 
 ### Query
 
-```text
-User Question
-      |
-Query Embedding
-      |
-Vector Search
-      |
-Relevant Context
-      |
-Prompt + Context
-      |
-Chat Model
-      |
-Grounded Answer
+```mermaid
+flowchart TD
+    A[User Question] --> B[Query Embedding]
+    B --> C[Vector Search]
+    C --> D[Relevant Context]
+    D --> E[Prompt + Context]
+    E --> F[Chat Model]
+    F --> G[Grounded Answer]
 ```
 
 RAG can ground answers in external data, but it does not guarantee correctness. Retrieval quality, authorization, chunking, ranking, prompts, and model behavior still matter.
@@ -494,14 +422,14 @@ Monitor more than HTTP requests:
 - Cost
 - Correlation/trace ID
 
-```text
-Spring AI
-   |
-Micrometer / OpenTelemetry
-   |
-Metrics + Traces
-   |
-Prometheus / Grafana / Jaeger / App Insights / Datadog
+```mermaid
+flowchart TD
+    A[Spring AI] --> B[Micrometer / OpenTelemetry]
+    B --> C[Metrics + Traces]
+    C --> D[Prometheus / Grafana]
+    C --> E[Jaeger]
+    C --> F[App Insights]
+    C --> G[Datadog]
 ```
 
 ## 19. Security
@@ -518,22 +446,15 @@ Key risks:
 
 Secure flow:
 
-```text
-User
- |
-Authentication
- |
-Authorization
- |
-Spring AI
- |
-Tool Permission Check
- |
-Tool
- |
-Domain Authorization
- |
-Database / Service
+```mermaid
+flowchart TD
+    A[User] --> B[Authentication]
+    B --> C[Authorization]
+    C --> D[Spring AI]
+    D --> E[Tool Permission Check]
+    E --> F[Tool]
+    F --> G[Domain Authorization]
+    G --> H[Database / Service]
 ```
 
 Never rely on an LLM prompt as the security boundary.
