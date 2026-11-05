@@ -2,31 +2,31 @@
 
 ## 1. How Configuration Becomes Beans
 
-`mermaid
+```mermaid
 flowchart TD
- A[Spring AI Starter] --> B[application.yml / properties]
- B --> C[Spring Boot Auto-Configuration]
- C --> D[ChatModel Bean]
- C --> E[ChatClient.Builder]
- C --> F[Integration Infrastructure]
- D --> G[Application]
- E --> G
- F --> G
-`
+    A[Spring AI Starter] --> B[application.yml / properties]
+    B --> C[Spring Boot Auto-Configuration]
+    C --> D[ChatModel Bean]
+    C --> E[ChatClient.Builder]
+    C --> F[Integration Infrastructure]
+    D --> G[Application]
+    E --> G
+    F --> G
+```
 
 ## 2. Secure Configuration
 
-`properties
+```properties
 spring.ai.openai.api-key=${OPENAI_API_KEY}
-`
+```
 
-`mermaid
+```mermaid
 flowchart LR
- A[Developer] --> B[Environment / Secret Store]
- C[CI/CD] --> D[CI Secret Variables]
- E[Kubernetes] --> F[Secret / External Secret]
- G[Cloud] --> H[Managed Secret Service]
-`
+    A[Developer] --> B[Environment / Secret Store]
+    C[CI/CD] --> D[CI Secret Variables]
+    E[Kubernetes] --> F[Secret / External Secret]
+    G[Cloud] --> H[Managed Secret Service]
+```
 
 **Never commit provider API keys into Git.**
 
