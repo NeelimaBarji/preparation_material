@@ -4,3 +4,8 @@ framework to develop applications powered by LLM ( large language models)
 # prompt template
 Prompt templates are essential for generating dynamic and flexible prompts that cater to various use cases, 
 such as conversation history, structured outputs, and specialized queries.
+
+
+#langchain official course:
+''' https://academy.langchain.com/courses/take/foundation-introduction-to-langchain-python/texts/71234844-getting-set-up-text '''
+
